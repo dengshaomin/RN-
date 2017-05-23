@@ -1,3 +1,146 @@
+
+React Navigation
+DOCSBLOGDEMOGITHUB
+Getting Started
+Hello Mobile Navigation
+Nesting Navigators
+Configuring Headers
+Navigators
+Intro to Navigators
+StackNavigator
+TabNavigator
+DrawerNavigator
+The Navigation Prop
+Navigation Actions
+Screen Nav Options
+Custom Navigators
+Advanced Guides
+Redux Integration
+Web Integration
+Deep Linking
+Screen Tracking
+Contributors
+Routers
+Routers
+Custom Router API
+StackRouter
+TabRouter
+Views
+Navigation Views
+Transitioner
+StackNavigator
+Provides a way for your app to transition between screens where each new screen is placed on top of a stack.
+By default the StackNavigator is configured to have the familiar iOS and Android look & feel: new screens slide in from the right on iOS, fade in from the bottom on Android. On iOS the StackNavigator can also be configured to a modal style where screens slide in from the bottom.
+
+class MyHomeScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Home',
+  }
+
+  render() {
+    return (
+      <Button
+        onPress={() => this.props.navigation.navigate('Profile', {name: 'Lucy'})}
+        title="Go to Lucy's profile"
+      />
+    );
+  }
+}
+
+const ModalStack = StackNavigator({
+  Home: {
+    screen: MyHomeScreen,
+  },
+  Profile: {
+    path: 'people/:name',
+    screen: MyProfileScreen,
+  },
+});
+API Definition
+StackNavigator(RouteConfigs, StackNavigatorConfig)
+RouteConfigs
+The route configs object is a mapping from route name to a route config, which tells the navigator what to present for that route.
+StackNavigator({
+
+  // For each screen that you can navigate to, create a new entry like this:
+  Profile: {
+
+    // `ProfileScreen` is a React component that will be the main content of the screen.
+    screen: ProfileScreen,
+    // When `ProfileScreen` is loaded by the StackNavigator, it will be given a `navigation` prop.
+
+    // Optional: When deep linking or using react-navigation in a web app, this path is used:
+    path: 'people/:name',
+    // The action and route params are extracted from the path.
+
+    // Optional: Override the `navigationOptions` for the screen
+    navigationOptions: ({navigation}) => ({
+      title: `${navigation.state.params.name}'s Profile'`,
+    }),
+  },
+
+  ...MyOtherRoutes,
+});
+StackNavigatorConfig
+Options for the router:
+initialRouteName - Sets the default screen of the stack. Must match one of the keys in route configs.
+initialRouteParams - The params for the initial route
+navigationOptions - Default navigation options to use for screens
+paths - A mapping of overrides for the paths set in the route configs
+Visual options:
+mode - Defines the style for rendering and transitions:
+card - Use the standard iOS and Android screen transitions. This is the default.
+modal - Make the screens slide in from the bottom which is a common iOS pattern. Only works on iOS, has no effect on Android.
+headerMode - Specifies how the header should be rendered:
+float - Render a single header that stays at the top and animates as screens are changed. This is a common pattern on iOS.
+screen - Each screen has a header attached to it and the header fades in and out together with the screen. This is a common pattern on Android.
+none - No header will be rendered.
+cardStyle - Use this prop to override or extend the default style for an individual card in stack.
+transitionConfig - Function to return an object that overrides default screen transitions.
+onTransitionStart - Function to be invoked when the card transition animation is about to start.
+onTransitionEnd - Function to be invoked once the card transition animation completes.
+Screen Navigation Options
+title
+String that can be used as a fallback for headerTitle and tabBarLabel
+header
+React Element or a function that given HeaderProps returns a React Element, to display as a header. Setting to null hides header.
+headerTitle
+String or React Element used by the header. Defaults to scene title
+headerBackTitle
+Title string used by the back button on iOS or null to disable label. Defaults to scene title
+headerTruncatedBackTitle
+Title string used by the back button when headerBackTitle doesn't fit on the screen. "Back" by default.
+headerRight
+React Element to display on the right side of the header
+headerLeft
+React Element to display on the left side of the header
+headerStyle
+Style object for the header
+headerTitleStyle
+Style object for the title component
+headerBackTitleStyle
+Style object for the back title
+headerTintColor
+Tint color for the header
+headerPressColorAndroid
+Color for material ripple (Android >= 5.0 only)
+gesturesEnabled
+Whether you can use gestures to dismiss this screen. Defaults to true on iOS, false on Android.
+Navigator Props
+The navigator component created by StackNavigator(...) takes the following props:
+screenProps - Pass down extra options to child screens, for example:
+const SomeStack = StackNavigator({
+  // config
+});
+
+<SomeStack
+  screenProps={/* this prop will get passed to the screen components as this.props.screenProps */}
+/>
+Examples
+See the examples SimpleStack.js and ModalStack.js which you can run locally as part of the NavigationPlayground app.
+You can view these examples directly on your phone by visiting our expo demo.
+Edit on GitHubPrevious: Intro to NavigatorsNext: TabNavigator
+React Navigation·Distributed under BSD License
 navigator.getCurrentRoutes();
 logoReact Native0.43
 文档
@@ -26,6 +169,178 @@ FlatList
 支持上拉加载。
 如果需要分组/类/区（section），请使用<SectionList>.
 
+
+React Navigation
+DOCSBLOGDEMOGITHUB
+Getting Started
+Hello Mobile Navigation
+Nesting Navigators
+Configuring Headers
+Navigators
+Intro to Navigators
+StackNavigator
+TabNavigator
+DrawerNavigator
+The Navigation Prop
+Navigation Actions
+Screen Nav Options
+Custom Navigators
+Advanced Guides
+Redux Integration
+Web Integration
+Deep Linking
+Screen Tracking
+Contributors
+Routers
+Routers
+Custom Router API
+StackRouter
+TabRouter
+Views
+Navigation Views
+Transitioner
+TabNavigator
+Used to easily set up a screen with several tabs with a TabRouter. For a live example please see our expo demo.
+class MyHomeScreen extends React.Component {
+  static navigationOptions = {
+    tabBarLabel: 'Home',
+    // Note: By default the icon is only shown on iOS. Search the showIcon option below.
+    tabBarIcon: ({ tintColor }) => (
+      <Image
+        source={require('./chats-icon.png')}
+        style={[styles.icon, {tintColor: tintColor}]}
+      />
+    ),
+  };
+
+  render() {
+    return (
+      <Button
+        onPress={() => this.props.navigation.navigate('Notifications')}
+        title="Go to notifications"
+      />
+    );
+  }
+}
+
+class MyNotificationsScreen extends React.Component {
+  static navigationOptions = {
+    tabBarLabel: 'Notifications',
+    tabBarIcon: ({ tintColor }) => (
+      <Image
+        source={require('./notif-icon.png')}
+        style={[styles.icon, {tintColor: tintColor}]}
+      />
+    ),
+  };
+
+  render() {
+    return (
+      <Button
+        onPress={() => this.props.navigation.goBack()}
+        title="Go back home"
+      />
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  icon: {
+    width: 26,
+    height: 26,
+  },
+});
+
+const MyApp = TabNavigator({
+  Home: {
+    screen: MyHomeScreen,
+  },
+  Notifications: {
+    screen: MyNotificationsScreen,
+  },
+}, {
+  tabBarOptions: {
+    activeTintColor: '#e91e63',
+  },
+});
+API Definition
+TabNavigator(RouteConfigs, TabNavigatorConfig)
+RouteConfigs
+The route configs object is a mapping from route name to a route config, which tells the navigator what to present for that route, see example from StackNavigator.
+TabNavigatorConfig
+tabBarComponent - component to use as the tab bar, e.g. TabBarBottom (this is the default on iOS), TabBarTop (this is the default on Android)
+tabBarPosition - position of the tab bar, can be 'top' or 'bottom'
+swipeEnabled - whether to allow swiping between tabs
+animationEnabled - whether to animate when changing tabs
+lazy - whether to lazily render tabs as needed as opposed to rendering them upfront
+tabBarOptions - configure the tab bar, see below.
+Several options get passed to the underlying router to modify navigation logic:
+initialRouteName - The routeName for the initial tab route when first loading
+order - Array of routeNames which defines the order of the tabs
+paths - Provide a mapping of routeName to path config, which overrides the paths set in the routeConfigs.
+backBehavior - Should the back button cause a tab switch to the initial tab? If yes, set to initialRoute, otherwise none. Defaults to initialRoute behavior.
+tabBarOptions for TabBarBottom (default tab bar on iOS)
+activeTintColor - label and icon color of the active tab
+activeBackgroundColor - background color of the active tab
+inactiveTintColor - label and icon color of the inactive tab
+inactiveBackgroundColor - background color of the inactive tab
+showLabel - whether to show label for tab, default is true
+style - style object for the tab bar
+labelStyle - style object for the tab label
+Example:
+tabBarOptions: {
+  activeTintColor: '#e91e63',
+  labelStyle: {
+    fontSize: 12,
+  },
+  style: {
+    backgroundColor: 'blue',
+  },
+}
+tabBarOptions for TabBarTop (default tab bar on Android)
+activeTintColor - label and icon color of the active tab
+inactiveTintColor - label and icon color of the inactive tab
+showIcon - whether to show icon for tab, default is false
+showLabel - whether to show label for tab, default is true
+upperCaseLabel - whether to make label uppercase, default is true
+pressColor - color for material ripple (Android >= 5.0 only)
+pressOpacity - opacity for pressed tab (iOS and Android < 5.0 only)
+scrollEnabled - whether to enable scrollable tabs
+tabStyle - style object for the tab
+indicatorStyle - style object for the tab indicator (line at the bottom of the tab)
+labelStyle - style object for the tab label
+iconStyle - style object for the tab icon
+style - style object for the tab bar
+Example:
+tabBarOptions: {
+  labelStyle: {
+    fontSize: 12,
+  },
+  style: {
+    backgroundColor: 'blue',
+  },
+}
+Screen Navigation Options
+title
+Generic title that can be used as a fallback for headerTitle and tabBarLabel
+tabBarVisible
+True or false to show or hide the tab bar, if not set then defaults to true
+tabBarIcon
+React Element or a function that given { focused: boolean, tintColor: string } returns a React.Element, to display in tab bar
+tabBarLabel
+Title string of a tab displayed in the tab bar or React Element or a function that given { focused: boolean, tintColor: string } returns a React.Element, to display in tab bar. When undefined, scene title is used. To hide, see tabBarOptions.showLabel in the previous section.
+Navigator Props
+The navigator component created by TabNavigator(...) takes the following props:
+screenProps - Pass down extra options to child screens and navigation options, for example:
+const TabNav = TabNavigator({
+  // config
+});
+
+<TabNav
+  screenProps={/* this prop will get passed to the screen components as this.props.screenProps */}
+/>
+Edit on GitHubPrevious: StackNavigatorNext: DrawerNavigator
+React Navigation·Distributed under BSD License
 一个简单的例子：
 
 <FlatList

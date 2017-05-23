@@ -2,11 +2,8 @@
 
 /* @flow */
 
-import React, { PureComponent } from 'react';
+import React from 'react';
 import {
-  View,
-  Text,
-  StyleSheet,
   AppRegistry,
   AppState
 } from 'react-native';
@@ -15,6 +12,15 @@ import {
 
 import SplashScreen from 'react-native-splash-screen'
 import {StackNavigator} from 'react-navigation';
+import TabBar from './Comm/TabBar';
+
+
+const TabNavigator = TabBar({
+  'Home':{screen:'test'}},
+  {
+    'Test':'a'
+  }
+)
 
 AppState.addEventListener('change', (nextAppState)=>{
   if (nextAppState === 'active'){
@@ -23,8 +29,17 @@ AppState.addEventListener('change', (nextAppState)=>{
     }}
 });
 
-export default SimpleApp = StackNavigator({
-)
+const StackApp = StackNavigator({
+    Home:{screen:TabNavigator}
+  },
+  {
+    initialRoute:'Home',
+    headerMode:'none'
+  }
+  )
 
 
-AppRegistry.registerComponent('WY_YX', () => SimpleApp);
+
+
+
+AppRegistry.registerComponent('WY_YX', () => StackApp);
