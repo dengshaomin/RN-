@@ -24,12 +24,7 @@ AppState.addEventListener('change', (nextAppState)=>{
 });
 
 export default SimpleApp = StackNavigator({
-  '主页面':{screen:WYMain},
-  '播放器页面':{screen:PlayView},
-  },{
-  initialRouteName:'主页面',
-  headerMode:'none'
-})
+)
 
 
 AppRegistry.registerComponent('WY_YX', () => SimpleApp);
