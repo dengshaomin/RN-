@@ -11,16 +11,22 @@ import {
 
 
 import SplashScreen from 'react-native-splash-screen'
-import {StackNavigator} from 'react-navigation';
-import TabBar from './Comm/TabBar';
+import {StackNavigator,TabNavigator} from 'react-navigation';
+// import TabNavigator from './Comm/TabBarView';
+
+// HomeTab 路由组件
+import Home from './Pager/Home'; //首页
+import Special from './Pager/Special'; //专题
+import Classification from './Pager/Classification'; //分类
+import ShoppingCart from './Pager/ShoppingCart'; //购物车
+import Personal from './Pager/Personal'; //个人
+
+// 跳转页面路由
+import Search from './Pager/Search';
 
 
-const TabNavigator = TabBar({
-  'Home':{screen:'test'}},
-  {
-    'Test':'a'
-  }
-)
+
+
 
 AppState.addEventListener('change', (nextAppState)=>{
   if (nextAppState === 'active'){
@@ -29,17 +35,40 @@ AppState.addEventListener('change', (nextAppState)=>{
     }}
 });
 
-const StackApp = StackNavigator({
-    Home:{screen:TabNavigator}
+
+const SimApp = TabNavigator({
+  "HomeStack":{screen:Home},
+  "SpecialStack":{screen:Special},
+  "ClassificationStack":{screen:Classification},
+  "ShoppingCartStack":{screen:ShoppingCart},
+  "PersonalStack":{screen:Personal}
+},
+  {
+    initialRouteName:'HomeStack',
+    // tabBarComponent:TabNavigator.TabBarBottom,
+    tabBarPosition:'bottom',
+    // lazy:true,
+    tabBarOptions: {
+      showIcon:true,
+      showLabel:true,
+      indicatorStyle:{backgroundColor:'rgb(249,249,249)'},
+      activeTintColor: 'rgb(164,0,0)', // 文字和图片选中颜色
+      inactiveTintColor: 'rgb(106,106,106)', // 文字和图片默认颜色
+      style: {
+        height:60,
+        backgroundColor: 'rgb(249,249,249)',
+      },
+    }
+  }
+)
+
+const HomeTab = StackNavigator({
+  "HomeTab":{screen:SimApp},
+  "Search":{screen:Search}
   },
   {
-    initialRoute:'Home',
     headerMode:'none'
   }
-  )
+)
 
-
-
-
-
-AppRegistry.registerComponent('WY_YX', () => StackApp);
+AppRegistry.registerComponent('WY_YX', () => HomeTab);
