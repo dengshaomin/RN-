@@ -23,6 +23,8 @@ import Personal from './Pager/Personal'; //个人
 
 // 跳转页面路由
 import Search from './Pager/Search';
+import QRScan from './Pager/QRScan';
+import Message from './Pager/Message';
 
 
 
@@ -47,7 +49,9 @@ const SimApp = TabNavigator({
     initialRouteName:'HomeStack',
     // tabBarComponent:TabNavigator.TabBarBottom,
     tabBarPosition:'bottom',
-    // lazy:true,
+    swipeEnabled:false,
+    animationEnabled:false,
+    lazy:true,
     tabBarOptions: {
       showIcon:true,
       showLabel:true,
@@ -64,7 +68,9 @@ const SimApp = TabNavigator({
 
 const HomeTab = StackNavigator({
   "HomeTab":{screen:SimApp},
-  "Search":{screen:Search}
+  "Search":{screen:Search},
+  "QRScan":{screen:QRScan},
+  "Message":{screen:Message}
   },
   {
     headerMode:'none'

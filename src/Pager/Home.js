@@ -14,11 +14,14 @@ import {
 } from 'react-native';
 
 import BaseNavigationBar from '../Comm/BaseNavigationBar';
-import ScrollTabViewItem from '../Component/Home/scrollTabViewItem';
+import ScrollTabView from '../Component/Home/scrollTabView';
 
+//mobx
 import {observable} from 'mobx';
 import {observer} from 'mobx-react/native';
 
+//SplashScreen启动
+import SplashScreen from 'react-native-splash-screen'
 
 const {width,height} = Dimensions.get('window')
 
@@ -29,13 +32,17 @@ export default class Home extends Component {
 
   constructor(props){
     super(props)
-    this.data = ['推荐','限时购','居家','餐厨','配件','服装','洗护','婴童','杂货','饮食','志趣']
   }
+
+  componentDidMount() {
+    SplashScreen.hide()
+  }
+
   static navigationOptions = {
     title: '首页',
     tabBarIcon:({tintColor}) => (
       <View style={styles.iconView}>
-        <Text style={[styles.icon,{color:tintColor}]}>&#xe604;</Text>
+        <Text style={[styles.icon,{color:tintColor}]}>&#xe604;</Text>
       </View>
     )
   }
@@ -56,24 +63,21 @@ export default class Home extends Component {
       navigate('Search')
   }
 
-  // 滚动条被按下
-  _scrollDown = (i) =>{
-    this.scollItemIndex = i
-  }
-
-  // 滚动TabView标题渲染
-  _renderScollTabView = () =>{
-    return <ScrollTabViewItem data={this.data} index={this.scollItemIndex} onPress={this._scrollDown}/>
+  // 礼物被按下
+  _giftDwon = () =>{
+    alert('礼物被按下')
   }
 
   render() {
+    let {navigate} = this.props.navigation
+
     return (
       <View style={styles.container}>
 
         {/* 头部 */}
         <View style={styles.headerView}>
           {/* 左边Icon图标 */}
-          <TouchableOpacity style={styles.headerLeftView}>
+          <TouchableOpacity style={styles.headerLeftView} onPress={()=>navigate('QRScan')}>
             <Text style={{fontFamily:'iconfont',fontSize:22,}}>&#xe662;</Text>
             <Text>扫一扫</Text>
           </TouchableOpacity>
@@ -87,7 +91,7 @@ export default class Home extends Component {
           </View>
 
           {/* 右边Icon图标 */}
-          <TouchableOpacity style={styles.headerLeftView}>
+          <TouchableOpacity style={styles.headerLeftView} onPress={()=>navigate('Message')}>
             <Text style={{fontFamily:'iconfont',fontSize:22,}}>&#xe705;</Text>
             <Text>消息</Text>
           </TouchableOpacity>
@@ -95,14 +99,14 @@ export default class Home extends Component {
 
         {/* 滚动TabView */}
         <View style={styles.scrollTabView}>
-          <View style={styles.scrollView}>
-            <ScrollView
-              horizontal={true}
-              showsHorizontalScrollIndicator={false}
-              >
-              {this._renderScollTabView()}
-            </ScrollView>
-          </View>
+
+          {/* 滚动Tab主体 */}
+          <ScrollTabView/>
+
+          {/* 漂浮的礼物 */}
+          <TouchableOpacity style={styles.giftView} onPress={this._giftDwon}>
+            <Text style={{fontFamily:'iconfont',fontSize:30,color:'rgb(164,0,0)'}}>&#xe68e;</Text>
+          </TouchableOpacity>
         </View>
 
       </View>
@@ -143,11 +147,20 @@ const styles = StyleSheet.create({
   },
   scrollTabView:{
     flex:1,
-    backgroundColor:'red'
   },
   scrollView:{
     backgroundColor:'white',
     height:30
+  },
+  giftView:{
+    position:'absolute',
+    backgroundColor:'rgba(255,255,255,0.5)',
+    width:40,height:40,
+    borderRadius:20,
+    right:20,
+    bottom:50,
+    justifyContent:'center',
+    alignItems:'center'
   },
   iconView:{
     alignSelf:'center',
