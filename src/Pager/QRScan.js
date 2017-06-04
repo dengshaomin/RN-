@@ -1,6 +1,6 @@
 /* @flow */
 
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import {
   View,
   Text,
@@ -13,7 +13,13 @@ import { QRScannerView } from 'ac-qrcode';
 
 const CameraManager = NativeModules.CameraManager || NativeModules.CameraModule;
 
-export default class QRScan extends Component {
+export default class QRScan extends PureComponent {
+
+  static navigationOptions ={
+    title:'二维码',
+    headerTitleStyle:{fontWeight:'200',alignSelf:'center'},
+    headerRight:<Text style={{marginRight:10,color:'black'}}>相册</Text>
+  }
 
   constructor(props){
     super(props)
@@ -69,8 +75,6 @@ export default class QRScan extends Component {
     return (
       <QRScannerView
                onScanResultReceived={this.barcodeReceived.bind(this)}
-
-               renderTopBarView={() => this._renderTitleBar()}
 
                renderBottomMenuView={() => this._renderMenu()}
       />

@@ -1,6 +1,6 @@
 /* @flow */
 
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import {
   View,
   Text,
@@ -10,29 +10,47 @@ import {
   Dimensions,
   TouchableOpacity,
   Alert,
-  ScrollView
+  ScrollView,
+  Platform
 } from 'react-native';
 
 import BaseNavigationBar from '../Comm/BaseNavigationBar';
 import ScrollTabView from '../Component/Home/scrollTabView';
 
 //mobx
-import {observable} from 'mobx';
-import {observer} from 'mobx-react/native';
+// import {observable} from 'mobx';
+// import {observer} from 'mobx-react/native';
+
+// 热更新
+import {
+  isFirstTime,
+  isRolledBack,
+  packageVersion,
+  currentVersion,
+  checkUpdate,
+  downloadUpdate,
+  switchVersion,
+  switchVersionLater,
+  markSuccess,
+} from 'react-native-update';
+
+import _updateConfig from '../../update.json';
+const {appKey} = _updateConfig[Platform.OS];
 
 //SplashScreen启动
 import SplashScreen from 'react-native-splash-screen'
 
 const {width,height} = Dimensions.get('window')
 
-@observer
-export default class Home extends Component {
-
-  @observable scollItemIndex = 0
+// @observer
+export default class Home extends PureComponent {
 
   constructor(props){
     super(props)
+    global.navigation = this.props.navigation
   }
+
+
 
   componentDidMount() {
     SplashScreen.hide()
@@ -40,6 +58,7 @@ export default class Home extends Component {
 
   static navigationOptions = {
     title: '首页',
+    header:null,
     tabBarIcon:({tintColor}) => (
       <View style={styles.iconView}>
         <Text style={[styles.icon,{color:tintColor}]}>&#xe604;</Text>
@@ -69,6 +88,7 @@ export default class Home extends Component {
   }
 
   render() {
+    console.log('home刷新');
     let {navigate} = this.props.navigation
 
     return (
@@ -101,7 +121,7 @@ export default class Home extends Component {
         <View style={styles.scrollTabView}>
 
           {/* 滚动Tab主体 */}
-          <ScrollTabView/>
+          <ScrollTabView navigation={this.props.navigation}/>
 
           {/* 漂浮的礼物 */}
           <TouchableOpacity style={styles.giftView} onPress={this._giftDwon}>
@@ -154,7 +174,8 @@ const styles = StyleSheet.create({
   },
   giftView:{
     position:'absolute',
-    backgroundColor:'rgba(255,255,255,0.5)',
+    backgroundColor:'rgba(255,255,255,0.9)',
+    borderWidth:1,borderColor:'rgba(147,147,147,0.5)',
     width:40,height:40,
     borderRadius:20,
     right:20,
@@ -163,7 +184,7 @@ const styles = StyleSheet.create({
     alignItems:'center'
   },
   iconView:{
-    alignSelf:'center',
+    justifyContent:'center',
     flex:1,
   },
   icon:{

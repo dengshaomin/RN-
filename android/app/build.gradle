@@ -93,6 +93,7 @@ android {
         versionCode 1
         versionName "1.0"
         ndk {
+//            abiFilters "armeabi-v7a"
             abiFilters "armeabi-v7a", "x86"
         }
     }
@@ -109,6 +110,7 @@ android {
             reset()
             enable enableSeparateBuildPerCPUArchitecture
             universalApk false  // If true, also generate a universal APK
+//            include "armeabi-v7a"
             include "armeabi-v7a", "x86"
         }
     }
@@ -135,6 +137,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-update')
     compile project(':react-native-camera')
     compile project(':react-native-splash-screen')
     compile fileTree(dir: "libs", include: ["*.jar"])

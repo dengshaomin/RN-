@@ -1,5 +1,6 @@
 package com.wy_yx;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 
 import com.cboy.rn.splashscreen.SplashScreen;
@@ -19,6 +20,7 @@ public class MainActivity extends ReactActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SplashScreen.show(this);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
     }
 }

@@ -1,19 +1,20 @@
 /* @flow */
 
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import {
   View,
   Text,
   StyleSheet,
 } from 'react-native';
 
-export default class Personal extends Component {
+export default class Personal extends PureComponent {
 
   static navigationOptions = {
     title: '个人',
+    header:null,
     tabBarIcon:({tintColor}) => (
       <View style={styles.iconView}>
-        <Text style={[styles.icon,{color:tintColor}]}>&#xe843;</Text>
+        <Text style={[styles.icon,{color:tintColor}]}>&#xe843;</Text>
       </View>
     )
   }
@@ -32,7 +33,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   iconView:{
-    alignSelf:'center',
+    // alignSelf:'flex-end',
+    justifyContent:'center',
     flex:1,
   },
   icon:{

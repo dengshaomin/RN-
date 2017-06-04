@@ -22,7 +22,6 @@ export default class LimitedTime extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor:'red',
     width
   },
 });

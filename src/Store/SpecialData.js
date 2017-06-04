@@ -1,0 +1,46 @@
+const data = [
+  {type:'scroll',viewData:[
+    {name:'丁磊私物推荐',img:'http://sep9.cn/aw1wkk'},
+    {name:'明星商品',img:'http://sep9.cn/2b4gkt'},
+    {name:'严选幕后',img:'http://sep9.cn/ytylkk'},
+    {name:'严选推荐',img:'http://sep9.cn/wqs1r0'}]
+  },
+  {
+    type:'view',
+    viewData:[
+      {
+        userName:'丁磊',topicTt:'这款毛巾的好，你们都知道',
+        topicDes:'阿瓦提毛巾买12条送5提纸巾',iconImg:'http://sep9.cn/efwj3k',viewImg:'http://sep9.cn/4dljuu'
+      }
+    ]
+  },
+  {
+    type:'view',
+    viewData:[
+      {
+        userName:'丁磊',topicTt:'这款毛巾的好，你们都知道',
+        topicDes:'阿瓦提毛巾买12条送5提纸巾',iconImg:'http://sep9.cn/efwj3k',viewImg:'http://sep9.cn/4dljuu'
+      }
+    ]
+  },
+  {
+    type:'view',
+    viewData:[
+      {
+        userName:'丁磊',topicTt:'这款毛巾的好，你们都知道',
+        topicDes:'阿瓦提毛巾买12条送5提纸巾',iconImg:'http://sep9.cn/efwj3k',viewImg:'http://sep9.cn/4dljuu'
+      }
+    ]
+  },
+  {
+    type:'view',
+    viewData:[
+      {
+        userName:'丁磊',topicTt:'这款毛巾的好，你们都知道',
+        topicDes:'阿瓦提毛巾买12条送5提纸巾',iconImg:'http://sep9.cn/efwj3k',viewImg:'http://sep9.cn/4dljuu'
+      }
+    ]
+  }
+]
+
+export default data

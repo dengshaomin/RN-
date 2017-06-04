@@ -1,0 +1,193 @@
+CURRENT STATS:
+System memory usage:
+  SOn /Norm: 1 samples:
+    Cached: 324MB min, 324MB avg, 324MB max
+    Free: 748MB min, 748MB avg, 748MB max
+    ZRam: 0.00 min, 0.00 avg, 0.00 max
+    Kernel: 43MB min, 43MB avg, 43MB max
+    Native: 59MB min, 59MB avg, 59MB max
+
+Per-Package Stats:
+  * com.wy_yx / u0a73 / v1:
+      * com.wy_yx / u0a73 / v1:
+               TOTAL: 90% (2.6MB-48MB-269MB/1.3MB-40MB-263MB over 8)
+                 Top: 90% (2.6MB-48MB-269MB/1.3MB-40MB-263MB over 8)
+
+Summary:
+  * com.wy_yx / u0a73 / v1:
+           TOTAL: 90% (2.6MB-48MB-269MB/1.3MB-40MB-263MB over 8)
+             Top: 90% (2.6MB-48MB-269MB/1.3MB-40MB-263MB over 8)
+
+Run time Stats:
+  SOn /Norm: +8m55s119ms (running)
+      TOTAL: +8m55s119ms
+
+Memory usage:
+  Kernel : 43MB (8 samples)
+  Native : 59MB (8 samples)
+  Top    : 59MB (21 samples)
+  ImpFg  : 27MB (20 samples)
+  Service: 40MB (29 samples)
+  Receivr: 263KB (34 samples)
+  Home   : 60MB (3 samples)
+  LastAct: 4.8MB (7 samples)
+  CchEmty: 102MB (24 samples)
+  Cached : 324MB (8 samples)
+  Free   : 748MB (8 samples)
+  TOTAL  : 1.4GB
+  ServRst: 15KB (11 samples)
+
+          Start time: 2017-06-03 15:03:35
+  Total elapsed time: +8m58s279ms (partial) (swapped-out-pss) libart.so
+
+Available pages by page size:
+Zone   0       Unmovable      1     0     0     1     2     1     1     0     1     0     0
+Zone   0     Reclaimable      0     0     0     0     0     0     0     0     0     0     0
+Zone   0         Movable      2     1     1     1     3     1     2     0     1     0     0
+Zone   0         Reserve      0     0     0     0     0     0     0     0     0     0     1
+Zone   0             CMA      0     0     0     0     0     0     0     0     0     0     0
+Zone   0         Isolate      0     0     0     0     0     0     0     0     0     0     0
+Zone   0       Unmovable      1     0     1     1     0     1     0     1     0     2     0
+Zone   0     Reclaimable      0     1     0     0     1     1     1     0     1     1     0
+Zone   0         Movable      1     1     1     0     1     0     1     0     1     0   193
+Zone   0         Reserve      0     0     0     0     0     0     0     0     0     0     1
+Zone   0             CMA      0     0     1     0     1     1     0     1     1     0     0
+Zone   0         Isolate      0     0     0     0     0     0     0     0     0     0     0
+Zone   0       Unmovable      1     1     1     0     1     1     0     1     1     1     0
+Zone   0     Reclaimable      0     0     0     0     0     0     0     0     0     0     0
+Zone   0         Movable      0     0     1     1     1     0     0     0     1     1   118
+Zone   0         Reserve      0     0     0     0     0     0     0     0     0     0     1
+Zone   0             CMA      0     0     0     0     0     0     0     0     0     0     0
+Zone   0         Isolate      0     0     0     0     0     0     0     0     0     0     0
+
+AGGREGATED OVER LAST 24 HOURS:
+System memory usage:
+  SOn /Norm: 9 samples:
+    Cached: 299MB min, 330MB avg, 370MB max
+    Free: 645MB min, 736MB avg, 803MB max
+    ZRam: 0.00 min, 0.00 avg, 0.00 max
+    Kernel: 41MB min, 44MB avg, 47MB max
+    Native: 57MB min, 58MB avg, 61MB max
+
+Per-Package Stats:
+  * com.wy_yx / u0a73 / v1:
+      * com.wy_yx / u0a73 / v1:
+               TOTAL: 99% (2.6MB-41MB-269MB/1.3MB-40MB-263MB over 398)
+                 Top: 99% (2.6MB-41MB-269MB/1.3MB-40MB-263MB over 398)
+            (Cached): 0.56% (38MB-38MB-38MB/35MB-35MB-35MB over 1)
+
+Summary:
+  * com.wy_yx / u0a73 / v1:
+           TOTAL: 99% (2.6MB-41MB-269MB/1.3MB-40MB-263MB over 398)
+             Top: 99% (2.6MB-41MB-269MB/1.3MB-40MB-263MB over 398)
+        (Cached): 0.56% (38MB-38MB-38MB/35MB-35MB-35MB over 1)
+
+Run time Stats:
+  SOn /Norm: +13h10m38s344ms
+      TOTAL: +13h10m38s344ms
+
+Memory usage:
+  Kernel : 44MB (72 samples)
+  Native : 58MB (72 samples)
+  Persist: 127MB (159 samples)
+  Top    : 42MB (552 samples)
+  ImpFg  : 36MB (651 samples)
+  ImpBg  : 7.0MB (189 samples)
+  Service: 16MB (458 samples)
+  Receivr: 28KB (386 samples)
+  Home   : 66MB (101 samples)
+  LastAct: 1.1MB (549 samples)
+  CchEmty: 78MB (561 samples)
+  Cached : 330MB (72 samples)
+  Free   : 736MB (72 samples)
+  TOTAL  : 1.5GB
+  ServRst: 1.2KB (128 samples)
+
+          Start time: 2017-05-31 11:52:13
+  Total elapsed time: +13h11m6s204ms (partial) (swapped-out-pss) libart.so
+
+Available pages by page size:
+Zone   0       Unmovable      1     0     0     1     2     1     1     0     1     0     0
+Zone   0     Reclaimable      0     0     0     0     0     0     0     0     0     0     0
+Zone   0         Movable      2     1     1     1     3     1     2     0     1     0     0
+Zone   0         Reserve      0     0     0     0     0     0     0     0     0     0     1
+Zone   0             CMA      0     0     0     0     0     0     0     0     0     0     0
+Zone   0         Isolate      0     0     0     0     0     0     0     0     0     0     0
+Zone   0       Unmovable      1     0     1     1     0     1     0     1     0     2     0
+Zone   0     Reclaimable      0     1     0     0     1     1     1     0     1     1     0
+Zone   0         Movable      1     1     1     0     1     0     1     0     1     0   193
+Zone   0         Reserve      0     0     0     0     0     0     0     0     0     0     1
+Zone   0             CMA      0     0     1     0     1     1     0     1     1     0     0
+Zone   0         Isolate      0     0     0     0     0     0     0     0     0     0     0
+Zone   0       Unmovable      1     1     1     0     1     1     0     1     1     1     0
+Zone   0     Reclaimable      0     0     0     0     0     0     0     0     0     0     0
+Zone   0         Movable      0     0     1     1     1     0     0     0     1     1   118
+Zone   0         Reserve      0     0     0     0     0     0     0     0     0     0     1
+Zone   0             CMA      0     0     0     0     0     0     0     0     0     0     0
+Zone   0         Isolate      0     0     0     0     0     0     0     0     0     0     0
+
+AGGREGATED OVER LAST 3 HOURS:
+System memory usage:
+  SOn /Norm: 3 samples:
+    Cached: 324MB min, 353MB avg, 370MB max
+    Free: 645MB min, 680MB avg, 748MB max
+    ZRam: 0.00 min, 0.00 avg, 0.00 max
+    Kernel: 43MB min, 46MB avg, 47MB max
+    Native: 57MB min, 58MB avg, 59MB max
+
+Per-Package Stats:
+  * com.wy_yx / u0a73 / v1:
+      * com.wy_yx / u0a73 / v1:
+               TOTAL: 98% (2.6MB-42MB-269MB/1.3MB-40MB-263MB over 68)
+                 Top: 98% (2.6MB-42MB-269MB/1.3MB-40MB-263MB over 68)
+            (Cached): 0.19%
+
+Summary:
+  * com.wy_yx / u0a73 / v1:
+           TOTAL: 98% (2.6MB-42MB-269MB/1.3MB-40MB-263MB over 68)
+             Top: 98% (2.6MB-42MB-269MB/1.3MB-40MB-263MB over 68)
+        (Cached): 0.19%
+
+Run time Stats:
+  SOn /Norm: +2h9m13s937ms
+      TOTAL: +2h9m13s937ms
+
+Memory usage:
+  Kernel : 46MB (24 samples)
+  Native : 58MB (24 samples)
+  Persist: 128MB (27 samples)
+  Top    : 43MB (121 samples)
+  ImpFg  : 38MB (163 samples)
+  ImpBg  : 7.1MB (47 samples)
+  Service: 28MB (132 samples)
+  Receivr: 38KB (124 samples)
+  Home   : 65MB (24 samples)
+  LastAct: 1.9MB (45 samples)
+  CchEmty: 75MB (226 samples)
+  Cached : 353MB (24 samples)
+  Free   : 680MB (24 samples)
+  TOTAL  : 1.5GB
+  ServRst: 2.2KB (34 samples)
+
+          Start time: 2017-06-02 05:24:26
+  Total elapsed time: +2h9m27s69ms (partial) (swapped-out-pss) libart.so
+
+Available pages by page size:
+Zone   0       Unmovable      1     0     0     1     2     1     1     0     1     0     0
+Zone   0     Reclaimable      0     0     0     0     0     0     0     0     0     0     0
+Zone   0         Movable      2     1     1     1     3     1     2     0     1     0     0
+Zone   0         Reserve      0     0     0     0     0     0     0     0     0     0     1
+Zone   0             CMA      0     0     0     0     0     0     0     0     0     0     0
+Zone   0         Isolate      0     0     0     0     0     0     0     0     0     0     0
+Zone   0       Unmovable      1     0     1     1     0     1     0     1     0     2     0
+Zone   0     Reclaimable      0     1     0     0     1     1     1     0     1     1     0
+Zone   0         Movable      1     1     1     0     1     0     1     0     1     0   193
+Zone   0         Reserve      0     0     0     0     0     0     0     0     0     0     1
+Zone   0             CMA      0     0     1     0     1     1     0     1     1     0     0
+Zone   0         Isolate      0     0     0     0     0     0     0     0     0     0     0
+Zone   0       Unmovable      1     1     1     0     1     1     0     1     1     1     0
+Zone   0     Reclaimable      0     0     0     0     0     0     0     0     0     0     0
+Zone   0         Movable      0     0     1     1     1     0     0     0     1     1   118
+Zone   0         Reserve      0     0     0     0     0     0     0     0     0     0     1
+Zone   0             CMA      0     0     0     0     0     0     0     0     0     0     0
+Zone   0         Isolate      0     0     0     0     0     0     0     0     0     0     0

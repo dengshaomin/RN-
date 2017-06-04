@@ -1,0 +1,52 @@
+Applications Memory Usage (in Kilobytes):
+Uptime: 541649 Realtime: 541649
+
+** MEMINFO in pid 8817 [com.wy_yx] **
+                   Pss  Private  Private  SwapPss     Heap     Heap     Heap
+                 Total    Dirty    Clean    Dirty     Size    Alloc     Free
+                ------   ------   ------   ------   ------   ------   ------
+  Native Heap    12412    12356        0        0    20992    18941     2050
+  Dalvik Heap    32823    32620        0        0    41603    37507     4096
+ Dalvik Other     1709     1708        0        0                           
+        Stack      836      836        0        0                           
+       Ashmem        2        0        0        0                           
+    Other dev        4        0        4        0                           
+     .so mmap     6314      304     4988        0                           
+    .apk mmap     3098      912       40        0                           
+    .ttf mmap       18        0        4        0                           
+    .dex mmap     5764     5368       56        0                           
+    .oat mmap     1914        0      332        0                           
+    .art mmap     1577     1232        8        0                           
+   Other mmap     1706        4     1448        0                           
+      Unknown    39053    39052        0        0                           
+        TOTAL   107230    94392     6880        0    62595    56448     6146
+ 
+ App Summary
+                       Pss(KB)
+                        ------
+           Java Heap:    33860
+         Native Heap:    12356
+                Code:    12004
+               Stack:      836
+            Graphics:        0
+       Private Other:    42216
+              System:     5958
+ 
+               TOTAL:   107230       TOTAL SWAP PSS:        0
+ 
+ Objects
+               Views:      184         ViewRootImpl:        1
+         AppContexts:        2           Activities:        1
+              Assets:        4        AssetManagers:        2
+       Local Binders:       12        Proxy Binders:       15
+       Parcel memory:        5         Parcel count:       21
+    Death Recipients:        0      OpenSSL Sockets:        0
+            WebViews:        0
+ 
+ SQL
+         MEMORY_USED:        0
+  PAGECACHE_OVERFLOW:        0          MALLOC_SIZE:        0
+ 
+ 
+ Asset Allocations
+    zip:/data/app/com.wy_yx-1/base.apk:/assets/fonts/iconfont.ttf: 11K

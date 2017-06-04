@@ -6,7 +6,8 @@ import {
   Text,
   StyleSheet,
   ScrollView,
-  Dimensions
+  Dimensions,
+  PanResponder
 } from 'react-native';
 
 import Recommend from './Recommend'; //推荐
@@ -21,17 +22,18 @@ import Groceries from './Groceries';  //杂货
 import Diet from './Diet';  //饮食
 import Interest from './Interest'; //志趣
 
-
+// mobx初始化
 import {observer} from 'mobx-react/native';
 import {observable} from 'mobx';
+
+// 工具类
+import scrollControl from '../../Tool/scrollControl';
 
 
 const {width,height} = Dimensions.get('window')
 
 @observer
 export default class ScrollTabView extends Component {
-
-  @observable scrollPos = 0
 
   constructor(props){
     super(props)
@@ -52,15 +54,9 @@ export default class ScrollTabView extends Component {
 
   // 滚动条文本被按下
   _scrollTextDown = (i) =>{
-    if (this.scrollPos != i) {
+    if (scrollControl.scrollPos != i) {
       this.refs.scrollItem.scrollTo({x:(i)*width,animated:true})
     }
-  }
-
-  // 移动手指时触发
-  _scrollItemMove = (e) =>{
-    // console.log(e.nativeEvent);
-    // this.scrollPos = e.nativeEvent.locationX
   }
 
   //滚动条滚动事件
@@ -68,25 +64,30 @@ export default class ScrollTabView extends Component {
 
     var length = e.nativeEvent.contentSize.width
     var offset = e.nativeEvent.contentOffset.x
-    var itemSize = 70 * 11
+    var itemSize = 70 * this.data.length
 
     var pos = offset / length * itemSize
-
-    if (offset > width * 5) {
+    if (offset > (width /70) ) {
       this.refs.scrollView.scrollTo({x:pos - 70 ,animated:true})
-    }else if (pos / 70 <=4) {
-      this.refs.scrollView.scrollTo({x:pos - 70,animated:true})
+    }else if (pos / 70 <4) {
+      if (pos / 70 > 0) {
+        this.refs.scrollView.scrollTo({x:pos - 70,animated:true})
+      }else {
+        this.refs.scrollView.scrollTo({x:pos ,animated:true})
+      }
+
     }
 
-    this.scrollPos = pos / 70
+    scrollControl.setScrollPos(pos / 70)
+    // this.scrollPos =
   }
 
   // 渲染scrollTabView
-  _renderScollTabView = () => {
+  renderScollTabView = () => {
     return this.data.map((el,index)=>{
-      var pos = Math.round(this.scrollPos)
+      var pos = Math.round(scrollControl.scrollPos)
       return (
-        <View style={styles.scrollTabView}>
+        <View key={'scrollView' + index} style={styles.scrollTabView}>
           <Text onPress={this._scrollTextDown.bind(this,index)} style={pos===index?styles.scrollTextShow:styles.scrollTextHidden}>{el.title}</Text>
         </View>
       )
@@ -94,15 +95,14 @@ export default class ScrollTabView extends Component {
   }
 
   // 渲染scrollTabViewItem
-  _renderScollTabItemView = () =>{
+  renderScollTabItemView = () =>{
     return this.data.map((el,index)=>{
       var Comp = el.screen
-      return <Comp style={{width:width,}}/>
+      return <Comp key={'Component' + index} style={{width:width,}} navigation={this.props.navigation}/>
     })
   }
 
   render() {
-
     return (
       <View style={styles.container}>
 
@@ -112,28 +112,25 @@ export default class ScrollTabView extends Component {
             ref='scrollView'
             style={{height:30,backgroundColor:'white'}}
             showsHorizontalScrollIndicator={false}
+            removeClippedSubviews={true}
             horizontal={true}>
-            {this._renderScollTabView()}
-            <View style={{position:'absolute',left:this.scrollPos*70,bottom:0,width:70,height:2,backgroundColor:'rgb(164,0,0)'}}></View>
+            {this.renderScollTabView()}
+            <View style={{position:'absolute',left:scrollControl.scrollPos*70,bottom:0,width:70,height:2,backgroundColor:'rgb(164,0,0)'}}></View>
           </ScrollView>
         </View>
 
-
         {/* 渲染scrollTabViewItem */}
-        <View style={{flex:1}}>
           <ScrollView
             ref='scrollItem'
+            scrollEnabled={scrollControl.screenEnable}
             showsHorizontalScrollIndicator={false}
             removeClippedSubviews={true}
             pagingEnabled={true}
             horizontal={true}
-            onTouchMove={this._scrollItemMove}
             onScroll={this._scrollItemScrollEvent}
             >
-            {this._renderScollTabItemView()}
+            {this.renderScollTabItemView()}
           </ScrollView>
-        </View>
-
 
       </View>
     );

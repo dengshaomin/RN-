@@ -1,6 +1,6 @@
 /* @flow */
 
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import {
   View,
   Text,
@@ -13,7 +13,7 @@ import {
 
 const {width} = Dimensions.get('window')
 
-export default class Search extends Component {
+export default class Search extends PureComponent {
 
   constructor(props){
     super(props)
@@ -33,6 +33,10 @@ export default class Search extends Component {
     ]
   }
 
+  static navigationOptions ={
+    header:null
+  }
+
   // 取消按钮被按下
   _goBack = () =>{
     var {goBack} = this.props.navigation
@@ -49,7 +53,7 @@ export default class Search extends Component {
     return this.data.map((el,index)=>{
       let random = Math.random()
       return (
-        <TouchableOpacity style={random>0.5?styles.hotSearchItemShow:styles.hotSearchItemHidden} onPress={this._hotSearchDown}>
+        <TouchableOpacity key={'Search'+index} style={random>0.5?styles.hotSearchItemShow:styles.hotSearchItemHidden} onPress={this._hotSearchDown}>
           <Text style={{color:random>0.5?'rgb(164,0,0)':'black'}}>{' '+ el + ' '}</Text>
         </TouchableOpacity>
       )

@@ -1,0 +1,76 @@
+Activity Resolver Table:
+  Non-Data Actions:
+      android.intent.action.MAIN:
+        1b53bd6 com.wy_yx/.MainActivity filter 6b0c42e
+          Action: "android.intent.action.MAIN"
+          Category: "android.intent.category.LAUNCHER"
+          AutoVerify=false
+
+Registered ContentProviders:
+  com.wy_yx/com.android.tools.fd.runtime.InstantRunContentProvider:
+    Provider{fe9de57 com.wy_yx/com.android.tools.fd.runtime.InstantRunContentProvider}
+
+ContentProvider Authorities:
+  [com.wy_yx.com.android.tools.fd.runtime.InstantRunContentProvider]:
+    Provider{fe9de57 com.wy_yx/com.android.tools.fd.runtime.InstantRunContentProvider}
+      applicationInfo=ApplicationInfo{69c5d44 com.wy_yx}
+
+Key Set Manager:
+  [com.wy_yx]
+      Signing KeySets: 12
+
+Packages:
+  Package [com.wy_yx] (b969e2d):
+    userId=10073
+    pkg=Package{7213f62 com.wy_yx}
+    codePath=/data/app/com.wy_yx-1
+    resourcePath=/data/app/com.wy_yx-1
+    legacyNativeLibraryDir=/data/app/com.wy_yx-1/lib
+    primaryCpuAbi=x86
+    secondaryCpuAbi=null
+    versionCode=1 minSdk=16 targetSdk=22
+    versionName=1.0
+    splits=[base, lib_dependencies_apk, lib_slice_0_apk, lib_slice_1_apk, lib_slice_2_apk, lib_slice_3_apk, lib_slice_4_apk, lib_slice_5_apk, lib_slice_6_apk, lib_slice_7_apk, lib_slice_8_apk, lib_slice_9_apk]
+    apkSigningVersion=2
+    applicationInfo=ApplicationInfo{69c5d44 com.wy_yx}
+    flags=[ DEBUGGABLE HAS_CODE ALLOW_CLEAR_USER_DATA ALLOW_BACKUP ]
+    dataDir=/data/user/0/com.wy_yx
+    supportsScreens=[small, medium, large, xlarge, resizeable, anyDensity]
+    timeStamp=2017-06-03 15:03:52
+    firstInstallTime=2017-05-23 22:02:31
+    lastUpdateTime=2017-06-03 15:03:53
+    signatures=PackageSignatures{24408f3 [2a91105e]}
+    installPermissionsFixed=true installStatus=1
+    pkgFlags=[ DEBUGGABLE HAS_CODE ALLOW_CLEAR_USER_DATA ALLOW_BACKUP ]
+    requested permissions:
+      android.permission.INTERNET
+      android.permission.SYSTEM_ALERT_WINDOW
+      android.permission.WRITE_EXTERNAL_STORAGE
+      android.permission.READ_PHONE_STATE
+      android.permission.READ_EXTERNAL_STORAGE
+      android.permission.RECORD_AUDIO
+      android.permission.RECORD_VIDEO
+      android.permission.CAMERA
+    install permissions:
+      android.permission.SYSTEM_ALERT_WINDOW: granted=true
+      android.permission.INTERNET: granted=true
+      android.permission.READ_EXTERNAL_STORAGE: granted=true
+      android.permission.READ_PHONE_STATE: granted=true
+      android.permission.CAMERA: granted=true
+      android.permission.WRITE_EXTERNAL_STORAGE: granted=true
+      android.permission.RECORD_AUDIO: granted=true
+    User 0: ceDataInode=21753 installed=true hidden=false suspended=false stopped=false notLaunched=false enabled=0
+      gids=[3003]
+      runtime permissions:
+
+
+Dexopt state:
+  [com.wy_yx]
+    Instruction Set: x86
+      path: /data/app/com.wy_yx-1/base.apk
+      status: /data/app/com.wy_yx-1/oat/x86/base.odex [compilation_filter=interpret-only, status=kOatUpToDate]
+
+
+Compiler stats:
+  [com.wy_yx]
+     base.apk - 95
