@@ -1,13 +1,14 @@
 /* @flow */
 
-import React, { PureComponent } from 'react';
+import React, { PureComponent ,Component} from 'react';
 import {
   View,
   Text,
   StyleSheet,
   Image,
   Modal,
-  TouchableHighlight
+  TouchableHighlight,
+  Animated
 } from 'react-native';
 
 
@@ -15,33 +16,91 @@ import {
 import ShopWeight from './ShopWeight';
 import ShopValuation from './ShopValuation';
 
-export default class ShopItemHidden extends PureComponent {
+// 控制接口
+import ShoppingCartControl from '../../Tool/ShoppingCartControl';
+
+// mobx
+import {action,intercept} from 'mobx';
+
+
+export default class ShopItemHidden extends Component {
 
   constructor(props){
     super(props)
+    let {data} = this.props
     this.state = {
-      inputState:false
+      display:'flex'
     }
+
+    intercept(ShoppingCartControl,'editSelectAll',change =>{
+      if (typeof ShoppingCartControl.shopData[0].viewData[data.shopID] !='undefined') {
+        if (change.newValue) {
+            ShoppingCartControl.shopData[0].viewData[data.shopID].editInputState = true
+        }else {
+            ShoppingCartControl.shopData[0].viewData[data.shopID].editInputState = false
+        }
+        this.forceUpdate()
+      }
+      return change
+    })
+
+    // intercept(ShoppingCartControl,'deleteButton',change =>{
+    //   if (change.newValue && ShoppingCartControl.shopData[0].viewData[data.shopID].editInputState) {
+    //     var v_shopData = Object.assign({},ShoppingCartControl.shopData[0])
+    //     console.log(v_shopData);
+    //     delete v_shopData.viewData[data.shopID]
+    //     console.log(v_shopData);
+    //     var shopData = v_shopData
+    //     console.log(shopData);
+    //     // ShoppingCartControl.shopData =
+    //   }
+    //   return change
+    // })
+
+  }
+
+  // 选择按钮-显示
+  @action
+  _inputShow = () =>{
+    let {data} = this.props
+    ShoppingCartControl.editSelected +=1
+    ShoppingCartControl.shopData[0].viewData[data.shopID].editInputState = true
+    this.forceUpdate()
+  }
+
+  // 选择按钮-隐藏
+  @action
+  _intputHidden = () =>{
+    let {data} = this.props
+    ShoppingCartControl.editSelected -=1 //选择数量减少1
+    ShoppingCartControl.shopData[0].viewData[data.shopID].editInputState = false
+    this.forceUpdate()
   }
 
   // 选择按钮被按下
+  @action
   _inputDown = () =>{
-    this.setState({
-      inputState:!this.state.inputState
-    })
+    let {data} = this.props
+
+    if (!ShoppingCartControl.shopData[0].viewData[data.shopID].editInputState) {
+      this._inputShow()
+    }else {
+      this._intputHidden()
+    }
   }
 
 
   render() {
-
+    console.log('hidden更新',this.state.height);
     const {data} = this.props
+    // {opacity:this.state.scale}
     return (
-      <View style={styles.container}>
+      <Animated.View style={[styles.container,{display:this.state.display}]}>
 
         <View style={{height:100,width:'100%',flexDirection:'row'}}>
           {/* 左侧选择按钮 */}
           <View style={{width:50,height:'100%',justifyContent:'center',alignItems:'center'}}>
-            {this.state.inputState
+            {ShoppingCartControl.shopData[0].viewData[data.shopID].editInputState
               ? <Text style={styles.inputShow} onPress={this._inputDown}>&#xe79a;</Text>
               : <Text style={styles.inputHidden} onPress={this._inputDown}></Text>
             }
@@ -63,7 +122,7 @@ export default class ShopItemHidden extends PureComponent {
             <View style={{flex:1,alignItems:'flex-end',flexDirection:'row'}}>
               <Text style={{color:'black'}}>{`￥${data.price}`}</Text>
 
-              <View style={{flex:1,justifyContent:'flex-end',alignItems:'flex-end'}}>
+              <View style={{flex:1,justifyContent:'center',alignItems:'flex-end',marginRight:2}}>
                 <ShopValuation data={data} />
               </View>
             </View>
@@ -72,7 +131,7 @@ export default class ShopItemHidden extends PureComponent {
 
 
         </View>
-      </View>
+      </Animated.View>
     );
   }
 }

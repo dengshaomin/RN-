@@ -8,30 +8,74 @@ import {
   Image
 } from 'react-native';
 
+// 控制接口
+import ShoppingCartControl from '../../Tool/ShoppingCartControl';
+
+// mobx
+import {action,intercept} from 'mobx';
+
 export default class ShopItemShow extends PureComponent {
 
     constructor(props){
       super(props)
-      this.state = {
-        inputState:false
-      }
-    }
+      let {data} = this.props
 
-    // 选择按钮被按下
-    _inputDown = () =>{
-      this.setState({
-        inputState:!this.state.inputState
+      intercept(ShoppingCartControl,'selectAll',change =>{
+        console.log('hasOwnProperty',data.shopID,ShoppingCartControl.shopData[0].viewData.hasOwnProperty(data.shopID));
+        if (ShoppingCartControl.shopData[0].viewData.hasOwnProperty(data.shopID)) {
+          if (change.newValue) {
+              ShoppingCartControl.shopData[0].viewData[data.shopID].inputState = true
+          }else {
+              ShoppingCartControl.shopData[0].viewData[data.shopID].inputState = false
+          }
+          this.forceUpdate()
+        }
+
+        return change
       })
     }
 
+    // 添加
+    @action
+    _add = () =>{
+      console.log('添加');
+      let {data} = this.props
+      ShoppingCartControl.selectQuantity += 1
+      ShoppingCartControl.selectedAmount += data.number * data.price
+      ShoppingCartControl.shopData[0].viewData[data.shopID].inputState = true
+      this.forceUpdate()
+    }
+
+    // 减少
+    @action
+    _reduce = () =>{
+      let {data} = this.props
+      ShoppingCartControl.selectQuantity -= 1
+      ShoppingCartControl.selectedAmount -= data.number * data.price
+      ShoppingCartControl.shopData[0].viewData[data.shopID].inputState = false
+      this.forceUpdate()
+    }
+
+    // 选择按钮被按下
+    @action
+    _inputDown = () =>{
+      let {data} = this.props
+      if (!ShoppingCartControl.shopData[0].viewData[data.shopID].inputState) {
+        this._add()
+      }else {
+        this._reduce()
+      }
+    }
+
     render() {
-      const {data} = this.props
+      let {data} = this.props
+      console.log('更新');
       return (
         <View style={styles.container}>
           <View style={{height:100,width:'100%',flexDirection:'row'}}>
             {/* 左侧选择按钮 */}
             <View style={{width:50,height:'100%',justifyContent:'center',alignItems:'center'}}>
-              {this.state.inputState
+              {ShoppingCartControl.shopData[0].viewData[data.shopID].inputState
                 ? <Text style={styles.inputShow} onPress={this._inputDown}>&#xe79a;</Text>
                 : <Text style={styles.inputHidden} onPress={this._inputDown}></Text>
               }

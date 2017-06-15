@@ -1,3 +1,4 @@
+hasOwnProperty
 elevation
 alignContent
 React Navigation

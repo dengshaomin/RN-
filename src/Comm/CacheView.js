@@ -22,9 +22,14 @@ export default class CacheView extends Component {
   }
 
   render() {
+    const {component as Comp } = this.props
+    
     return (
       <View style={styles.container}>
-        <Text>I'm the MyComponent component</Text>
+        {this.state.inital
+          ?<Comp/>
+          :null
+        }
       </View>
     );
   }

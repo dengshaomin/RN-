@@ -14,7 +14,6 @@ import {
   Platform
 } from 'react-native';
 
-import BaseNavigationBar from '../Comm/BaseNavigationBar';
 import ScrollTabView from '../Component/Home/scrollTabView';
 
 //mobx
@@ -22,20 +21,20 @@ import ScrollTabView from '../Component/Home/scrollTabView';
 // import {observer} from 'mobx-react/native';
 
 // 热更新
-import {
-  isFirstTime,
-  isRolledBack,
-  packageVersion,
-  currentVersion,
-  checkUpdate,
-  downloadUpdate,
-  switchVersion,
-  switchVersionLater,
-  markSuccess,
-} from 'react-native-update';
-
-import _updateConfig from '../../update.json';
-const {appKey} = _updateConfig[Platform.OS];
+// import {
+//   isFirstTime,
+//   isRolledBack,
+//   packageVersion,
+//   currentVersion,
+//   checkUpdate,
+//   downloadUpdate,
+//   switchVersion,
+//   switchVersionLater,
+//   markSuccess,
+// } from 'react-native-update';
+//
+// import _updateConfig from '../../update.json';
+// const {appKey} = _updateConfig[Platform.OS];
 
 //SplashScreen启动
 import SplashScreen from 'react-native-splash-screen'
